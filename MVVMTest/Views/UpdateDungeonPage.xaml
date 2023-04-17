@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:MVVMTest.ViewModels.DungeonViewModels"
+             x:DataType="viewmodel:UpdateDungeonPageViewModel"
+             x:Class="MVVMTest.Views.UpdateDungeonPage"
+             Title="UpdateDungeonPage">
+
+    
+    
+    <VerticalStackLayout Spacing="15">
+        <VerticalStackLayout>
+            <Label 
+            Text="Name"
+            />
+            <Entry Text="{Binding Name, Mode=TwoWay}"
+            Placeholder="Name" />
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label 
+            Text="Level"
+            />
+            <Picker ItemsSource="{Binding TierList}"
+                    ItemDisplayBinding="{Binding Tier}"
+                    SelectedItem="{Binding SelectedTier}"
+                    SelectedIndex="{Binding Level.Id}"
+             />
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label 
+            Text="Enchant"
+            />
+            <Picker ItemsSource="{Binding EnchantList}"
+                    ItemDisplayBinding="{Binding Enchant}"
+                    SelectedItem="{Binding SelectedEnchant}"
+                    SelectedIndex="{Binding Enchant.Id}"
+            />
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label 
+            Text="Zone"
+            />
+            <Entry Text="{Binding Zone}"
+            Placeholder="Zone" />
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <Label 
+            Text="Type"
+            />
+            <Entry Text="{Binding Type}"
+            Placeholder="Type" />
+        </VerticalStackLayout>
+
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Button Text="Save"
+                    Command="{Binding UpdateDungeonCommand}">
+            </Button>
+            <Button Text="Delete"
+                    Command="{Binding DeleteDungeonCommand}">
+            </Button>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

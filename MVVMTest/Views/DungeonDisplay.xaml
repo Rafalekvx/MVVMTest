@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:MVVMTest.Models"
+             xmlns:viewmodel="clr-namespace:MVVMTest.ViewModels.DungeonViewModels"
+             x:DataType="viewmodel:DungeonDisplayViewModel"
+             x:Class="MVVMTest.Views.DungeonDisplay"
+             Title="DungeonDisplay">
+    <StackLayout>
+        <Label Text="Dungeon List" />
+
+        <HorizontalStackLayout HorizontalOptions="End">
+            <Button Text="Add" Command="{Binding AddDungeonCommand}" />
+            <Button Text="Update" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DungeonDisplayViewModel}},Path=ItemTapped}" CommandParameter="{Binding .}" />
+        </HorizontalStackLayout>
+
+        <ListView ItemsSource="{Binding dungeonsCollection}"
+                  IsRefreshing="True"
+                  ItemSelected="OnItemSelected">
+            <ListView.Header>
+                <HorizontalStackLayout Spacing="10">
+                    <Label Text="Name" />
+                    <Label Text="Level" />
+                    <Label Text="Enchant" />
+                    <Label Text="Zone" />
+                    <Label Text="Type" />
+                </HorizontalStackLayout>
+            </ListView.Header>
+
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="models:Dungeon">
+                    <ViewCell>
+                        <StackLayout Spacing="15">
+                        <HorizontalStackLayout Spacing="10">
+                            <Label Text="{Binding name}" />
+                            <Label Text="{Binding level}" />
+                            <Label Text="{Binding enchant}" />
+                            <Label Text="{Binding zone}" />
+                            <Label Text="{Binding type}" />
+                        </HorizontalStackLayout>
+                    </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </StackLayout>
+</ContentPage>
